@@ -1,5 +1,7 @@
 package com.bmc.qa.pages;
 
-public class CreateRequestPage {
+import com.bmc.qa.base.BmcRemedyBase;
+
+public class CreateRequestPage extends BmcRemedyBase {
 
 }

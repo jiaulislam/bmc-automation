@@ -58,5 +58,6 @@ public class BmcRemedyBase {
 		driver.manage().deleteAllCookies();
 		driver.manage().timeouts().pageLoadTimeout(CustomUtility.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(CustomUtility.IMPLICIT_WAIT, TimeUnit.SECONDS);
+		driver.get(CustomUtility.URL);
 	}
 }

@@ -1,5 +1,7 @@
 package com.bmc.qa.pages;
 
-public class LogoutPage {
+import com.bmc.qa.base.BmcRemedyBase;
+
+public class LogoutPage extends BmcRemedyBase {
 
 }
