@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import com.bmc.qa.base.BmcRemedyBase;
 import com.bmc.qa.pages.LoginPage;
 import com.bmc.qa.pages.HomePage;
-import com.bmc.qa.utils.CustomUtility;
+import com.bmc.qa.utils.UserUtility;
 
 public class LoginPageTest extends BmcRemedyBase {
 	
@@ -22,7 +22,7 @@ public class LoginPageTest extends BmcRemedyBase {
 	
 	@BeforeMethod
 	public void setUp() {
-		Initialization();
+		initialization();
 		loginPage = new LoginPage();
 	}
 	
@@ -40,7 +40,7 @@ public class LoginPageTest extends BmcRemedyBase {
 	
 	@Test(priority=3)
 	public void loginTest() {
-		homePage = loginPage.login(CustomUtility.USER_NAME, CustomUtility.USER_PASS);
+		homePage = loginPage.login(UserUtility.USER_NAME, UserUtility.USER_PASS);
 	}
 	
 	

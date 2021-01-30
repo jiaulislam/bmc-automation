@@ -35,6 +35,21 @@ public class LoginPage extends BmcRemedyBase {
 		return itHomeText.isDisplayed();
 	}
 	
+	
+	/**
+	 * <h1>Login to BMC Remedy</h1>
+	 * <p>The login() function implements
+	 * and login to website given browser and 
+	 * return a HomePage object as this functions landing
+	 * page is HomePage.<br><br>
+	 * <b> Usage</b>: {@code LoginPage.login();}
+	 * <br><br>
+	 * @author Jiaul Islam
+	 * @version 0.1
+	 * @param username An username is required to login to website
+	 * @param password A password is required to login to website relative to username 
+	 * @returns HomePage
+	 */
 	public HomePage login(String username, String password) {
 		this.username.sendKeys(username);
 		this.password.sendKeys(password);

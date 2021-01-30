@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import com.bmc.qa.utils.CustomUtility;
+import com.bmc.qa.utils.UserUtility;
 
 public class BmcRemedyBase {
 	public static WebDriver driver;
@@ -41,7 +41,7 @@ public class BmcRemedyBase {
 	 * @version 0.1
 	 * @returns void
 	 */
-	public static void Initialization() {
+	public static void initialization() {
 		String browserName = staticData.getProperty("browser");
 		if (browserName.equals("chrome")) {
 			System.setProperty("webdriver.chrome.driver", "C:\\Users\\Jibon\\Desktop\\chromedriver_win32\\chromedriver.exe");
@@ -56,8 +56,8 @@ public class BmcRemedyBase {
 		}
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
-		driver.manage().timeouts().pageLoadTimeout(CustomUtility.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
-		driver.manage().timeouts().implicitlyWait(CustomUtility.IMPLICIT_WAIT, TimeUnit.SECONDS);
-		driver.get(CustomUtility.URL);
+		driver.manage().timeouts().pageLoadTimeout(UserUtility.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(UserUtility.IMPLICIT_WAIT, TimeUnit.SECONDS);
+		driver.get(UserUtility.URL);
 	}
 }
