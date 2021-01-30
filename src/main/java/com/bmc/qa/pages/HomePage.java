@@ -39,7 +39,7 @@ public class HomePage extends BmcRemedyBase{
 	
 	
 	/**
-	 * <h1>Get the current logged in user name.</h1> 
+	 * Get the current logged in user name.
 	 * <br>
 	 * <b>Usage:<b> {@code HomePage.validateCurrnetUser}
 	 * <br>
@@ -49,14 +49,11 @@ public class HomePage extends BmcRemedyBase{
 	 * @return String
 	 */
 	public String validateCurrentUser() {
-		/*
-		 * return the current logged in user name
-		 */
 		return userNameText.getText();
 	}
 	
 	/**
-	 * <h1>Check if user already logged in from another machine.</h1>
+	 * Check if user already logged in from another machine.
 	 * <br>
 	 * @author Jibon
 	 * @version 0.1
@@ -84,8 +81,9 @@ public class HomePage extends BmcRemedyBase{
 		;
 	}
 	
+	
 	/**
-	 *<h1> Click the logout button of the HomePage.</h1>
+	 *Click the logout button of the HomePage.
 	 * 
 	 * @author Jibon
 	 * @version 0.1

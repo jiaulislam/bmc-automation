@@ -41,6 +41,10 @@ public class LoginPageTest extends BmcRemedyBase {
 	@Test(priority=3)
 	public void loginTest() {
 		homePage = loginPage.login(UserUtility.USER_NAME, UserUtility.USER_PASS);
+		String name = "K M Jiaul Islam Jibon";
+		if (name.equals(homePage.validateCurrentUser())) {
+			homePage.clickLogoutBtn();
+		}
 	}
 	
 	
