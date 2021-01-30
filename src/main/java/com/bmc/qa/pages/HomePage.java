@@ -72,8 +72,16 @@ public class HomePage extends BmcRemedyBase{
 		}
 	}
 	
+	/**
+	 * <h1>Handle situation where user have 
+	 * already logged in from other computer</h1>
+	 * <br>
+	 * @author Jibon
+	 * @version 0.1
+	 * @return void
+	 */
 	public void handleAlreadyLoggedInUser() {
-		
+		;
 	}
 	
 	/**

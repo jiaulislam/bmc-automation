@@ -35,6 +35,16 @@ public class LoginPage extends BmcRemedyBase {
 		return itHomeText.isDisplayed();
 	}
 	
+	/**
+	 * <h1> Handle invalid user credentials</h1>
+	 * <br>
+	 * @author Jibon
+	 * @version 0.1
+	 * @return void
+	 */
+	public void handleInvalidCredentials() {
+		;
+	}
 	
 	/**
 	 * <h1>Login to BMC Remedy</h1>
