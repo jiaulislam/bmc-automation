@@ -1,5 +1,6 @@
 package com.bmc.qa.pages;
 
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -7,6 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 import com.bmc.qa.base.BmcRemedyBase;
 
 public class LoginPage extends BmcRemedyBase {
+	
+	final String INVLAID_USER_CRED = "ARERR [9388] Authentication failed";
 	
 	//Page Factory
 	@FindBy(xpath="//*[@id='username-id']") // Locator XPATH: User-Name Field
@@ -31,28 +34,41 @@ public class LoginPage extends BmcRemedyBase {
 		return driver.getTitle();
 	}
 	
-	public boolean validateText() {
+	public boolean validateLoginPageText() {
 		return itHomeText.isDisplayed();
 	}
 	
 	/**
-	 * <h1> Handle invalid user credentials</h1>
+	 *  Handle invalid user credentials with logics
 	 * <br>
 	 * @author Jibon
 	 * @version 0.1
-	 * @return void
+	 * @return boolean
 	 */
-	public void handleInvalidCredentials() {
-		;
+	public boolean isValidUserCredentials() throws NoAlertPresentException{
+		try {
+			String alertText = driver.switchTo().alert().getText();
+			if (alertText.equals(INVLAID_USER_CRED)) {
+				driver.switchTo().alert().accept();
+				System.err.println("Invalid username or password. Please try again.");
+				driver.quit();
+				return false;
+			}
+			else {
+				throw new NoAlertPresentException();
+			}
+		} catch (NoAlertPresentException exception) {
+			return true;
+		}
 	}
 	
 	/**
-	 * <h1>Login to BMC Remedy</h1>
-	 * <p>The login() function implements
+	 * Login to BMC Remedy
+	 * The login() function implements
 	 * and login to Web-Site given browser and 
 	 * return a HomePage object as this functions landing
 	 * page is HomePage.<br><br>
-	 * <b> Usage</b>: {@code LoginPage.login();}
+	 * Usage: {@code LoginPage.login();}
 	 * <br><br>
 	 * @author Jibon
 	 * @version 0.1
@@ -60,7 +76,7 @@ public class LoginPage extends BmcRemedyBase {
 	 * @param password A password is required to login to Web-Site relative to UserName 
 	 * @returns HomePage
 	 */
-	public HomePage login(String username, String password) {
+	public HomePage login(final String username, final String password) {
 		this.username.sendKeys(username);
 		this.password.sendKeys(password);
 		this.loginBtn.click();

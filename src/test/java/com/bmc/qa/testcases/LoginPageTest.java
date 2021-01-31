@@ -15,6 +15,8 @@ public class LoginPageTest extends BmcRemedyBase {
 	LoginPage loginPage;
 	HomePage homePage;
 	
+	final String USERNAME = "K M Jiaul Islam Jibon";
+	
 	public LoginPageTest() {
 		super();
 	}
@@ -34,15 +36,22 @@ public class LoginPageTest extends BmcRemedyBase {
 	
 	@Test(priority=2)
 	public void isItHomeTextAvailableTest() {
-		boolean flag = loginPage.validateText();
+		boolean flag = loginPage.validateLoginPageText();
 		Assert.assertTrue(flag);
 	}
 	
-	@Test(priority=3)
+	@Test(priority=4)
 	public void loginTest() {
 		homePage = loginPage.login(UserUtility.USER_NAME, UserUtility.USER_PASS);
-		String name = "K M Jiaul Islam Jibon";
-		if (name.equals(homePage.validateCurrentUser())) {
+		if (USERNAME.equals(homePage.validateCurrentUser())) {
+			homePage.clickLogoutBtn();
+		}
+	}
+	
+	@Test(priority=3)
+	public void handleInvalidCredentialsTest() {
+		homePage = loginPage.login(UserUtility.USER_NAME, UserUtility.USER_PASS);
+		if (loginPage.isValidUserCredentials()) {
 			homePage.clickLogoutBtn();
 		}
 	}

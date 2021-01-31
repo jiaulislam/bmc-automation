@@ -1,5 +1,8 @@
 package com.bmc.qa.pages;
 
+import java.util.Scanner;
+
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,6 +12,8 @@ import com.bmc.qa.base.BmcRemedyBase;
 
 public class HomePage extends BmcRemedyBase{
 	
+	final String ALREADY_LOGGED_IN_MSG = "User is currently connected "
+			+ "from another machine";
 	
 	@FindBy(xpath="//div[@class='f9'][contains(text(),'Logout')]")
 	WebElement logoutBtn;
@@ -70,15 +75,46 @@ public class HomePage extends BmcRemedyBase{
 	}
 	
 	/**
-	 * <h1>Handle situation where user have 
-	 * already logged in from other computer</h1>
+	 * Handle situation where user  
+	 * already logged in from other computer/browser</h1>
 	 * <br>
 	 * @author Jibon
 	 * @version 0.1
-	 * @return void
+	 * @return false if user is not connected & choose to overwrite else false
 	 */
-	public void handleAlreadyLoggedInUser() {
-		;
+	public boolean handleAlreadyLoggedInUser() {
+		try {
+			String alertText = driver.switchTo().alert().getText();
+			
+			if (alertText.contains(ALREADY_LOGGED_IN_MSG)) {
+				System.out.println("Already connected from other machine! "
+						+ "Do you wish to overwrite (Y/N) ?");
+				Scanner userInput = new Scanner(System.in);
+				
+					// just take the first character 
+					char userChoice = userInput.nextLine().charAt(0);
+					
+					if (Character.toLowerCase(userChoice) == 'y') {
+						// go-on with the program execution
+						driver.switchTo().alert().accept();
+						return false;
+					}
+					else if (Character.toLowerCase(userChoice) == 'n') {
+						// break the program as user don't want to proceed with overwrite
+						driver.switchTo().alert().dismiss();
+						return true;
+					}
+					else {
+						System.out.println("Invalid choice ! Try again.");
+						return true;
+					}
+			}
+			else {
+				throw new NoAlertPresentException();
+			}
+		} catch (NoAlertPresentException exception) {
+			return false;
+		}
 	}
 	
 	

@@ -112,39 +112,5 @@
         <activeByDefault>true</activeByDefault>
       </activation>
     </profile>
-    <profile>
-      <id>devhost</id>
-      <properties>
-        <site.url>http://devhost/</site.url>
-      </properties>
-    </profile>
-    <profile>
-      <id>testhost</id>
-      <properties>
-        <site.url>http://testhost/</site.url>
-      </properties>
-    </profile>
-    <profile>
-      <id>prodhost</id>
-      <properties>
-        <site.url>http://prodhost.com/</site.url>
-      </properties>
-    </profile>
-    <!-- grid -->
-    <profile>
-      <id>nogrid</id>
-      <properties>
-        <grid.url></grid.url>
-      </properties>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-    </profile>
-    <profile>
-      <id>grid</id>
-      <properties>
-        <grid.url>http://localhost:4444/wd/hub/</grid.url>
-      </properties>
-    </profile>
   </profiles>
 </project>

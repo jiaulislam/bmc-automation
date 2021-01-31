@@ -31,13 +31,13 @@ public class BmcRemedyBase {
 	
 
 	/**
-	 * <h1>Initiate the Driver</h1>
+	 * Initiate the Driver
 	 * <p>The Initialization() function implements the WebDriver 
 	 * and runs the Driver of browser property in 
 	 * <b>config.properties</b> (ChromeDriver, Firefox, IE)</p>
 	 * <b> Usage</b>: {@code BmcRemedyBase.Initialization();}
 	 * <br><br>
-	 * @author Jiaul Islam
+	 * @author Jibon
 	 * @version 0.1
 	 * @returns void
 	 */
@@ -47,8 +47,10 @@ public class BmcRemedyBase {
 			System.setProperty("webdriver.chrome.driver", "C:\\Users\\Jibon\\Desktop\\chromedriver_win32\\chromedriver.exe");
 			driver = new ChromeDriver();
 		}else if (browserName.equals("firefox")) {
+			// not yet working for it
 			;
-		}else if (browserName.equals("ie")) {
+		}else if (browserName.equals("Edge")) {
+			// not yet working for it
 			;
 		}else {
 			System.out.println("Sorry ! Browser model not supported at the moment. You can mail at jiaulislam.ict.bd@gmail.com for "
