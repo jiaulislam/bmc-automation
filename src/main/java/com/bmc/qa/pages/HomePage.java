@@ -34,6 +34,7 @@ public class HomePage extends BmcRemedyBase{
 	WebElement userNameText;
 	
 	
+	
 	// initialize the Page Factory objects
 	public HomePage() {
 		PageFactory.initElements(driver, this);
@@ -45,7 +46,7 @@ public class HomePage extends BmcRemedyBase{
 	
 	/**
 	 * Get the current logged in user name.
-	 * <br>
+	 * <br><br>
 	 * <b>Usage:<b> {@code HomePage.validateCurrnetUser}
 	 * <br>
 	 * <br>
@@ -115,6 +116,40 @@ public class HomePage extends BmcRemedyBase{
 		} catch (NoAlertPresentException exception) {
 			return false;
 		}
+	}
+	
+	/**
+	 * Click the floating application button on home page.
+	 * 
+	 * @author Jibon
+	 * @version 0.1
+	 * @return void
+	 */
+	public void clickApplicationBtn() {
+		applicationBtn.click();
+	}
+	
+	/**
+	 * Click the Change Management button from application list.
+	 * 
+	 * @author Jibon
+	 * @version 0.1
+	 * @return void
+	 */
+	public void clickChangeManagementBtn() {
+		changeManagementBtn.click();
+	}
+	
+	
+	/**
+	 * Click the New Change button from Change Management list.
+	 * 
+	 * @author Jibon
+	 * @version 0.1
+	 * @return void
+	 */
+	public void cilckNewChange() {
+		newChangeBtn.click();
 	}
 	
 	

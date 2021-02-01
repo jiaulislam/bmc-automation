@@ -11,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import com.bmc.qa.utils.UserUtility;
 
+
 public class BmcRemedyBase {
 	public static WebDriver driver;
 	public static Properties staticData;
@@ -59,7 +60,8 @@ public class BmcRemedyBase {
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
 		driver.manage().timeouts().pageLoadTimeout(UserUtility.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
-		driver.manage().timeouts().implicitlyWait(UserUtility.IMPLICIT_WAIT, TimeUnit.SECONDS);
+//		driver.manage().timeouts().implicitlyWait(UserUtility.IMPLICIT_WAIT, TimeUnit.SECONDS);
 		driver.get(UserUtility.URL);
 	}
+	
 }

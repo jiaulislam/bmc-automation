@@ -9,4 +9,19 @@ public class UserUtility {
 	public static String USER_PASS = System.getenv("BMC_PASS");
 //	public static String USER_NAME = "Jis2462"; // For static use purpose set this
 //	public static String USER_PASS = "1234";
+	
+	public static String[] TNR_GROUP = {
+            "Muhammad Shahed",
+            "Ripan Kumar",
+            "Sudipta Das"
+	};
+	
+	public static String[] ANR_GROUP= {
+            "Faisal Mahmud Fuad",
+            "Sumon Kumar Biswas",
+            "Shahriar Mahbub",
+            "Md. Musfiqur  Rahman",
+            "Md. Rakibuzzaman",
+            "K.M Khairul Bashar"
+	};
 }
