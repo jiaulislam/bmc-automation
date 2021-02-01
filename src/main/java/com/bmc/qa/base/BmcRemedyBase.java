@@ -6,8 +6,12 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.bmc.qa.utils.UserUtility;
 
@@ -15,6 +19,7 @@ import com.bmc.qa.utils.UserUtility;
 public class BmcRemedyBase {
 	public static WebDriver driver;
 	public static Properties staticData;
+	public static WebDriverWait wait;
 	
 	public BmcRemedyBase() {
 		
@@ -62,6 +67,25 @@ public class BmcRemedyBase {
 		driver.manage().timeouts().pageLoadTimeout(UserUtility.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
 //		driver.manage().timeouts().implicitlyWait(UserUtility.IMPLICIT_WAIT, TimeUnit.SECONDS);
 		driver.get(UserUtility.URL);
+	}
+	/**
+	 * Click an WebElement with explicit wait.
+	 * @author Jibon
+	 * @version 0.1
+	 * @param WebElement
+	 * @return void
+	 */
+	public static void clickOn(WebElement element) {
+		wait = new WebDriverWait(driver, UserUtility.EXPLICIT_WAIT);
+		
+		WebElement foundElement = wait.until(ExpectedConditions.visibilityOf(element));
+		
+		try {
+			foundElement.click();
+		}catch (NoSuchElementException exception) {
+			;
+		}
+		
 	}
 	
 }

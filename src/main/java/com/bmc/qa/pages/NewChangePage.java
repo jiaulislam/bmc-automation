@@ -1,20 +1,15 @@
 package com.bmc.qa.pages;
 
-import java.util.NoSuchElementException;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.PageFactory;
 
 import com.bmc.qa.base.BmcRemedyBase;
-import com.bmc.qa.utils.UserUtility;
 
 public class NewChangePage extends BmcRemedyBase {
 	
 	private String newChangeNumber;
-	private static WebDriverWait wait;
 	
 	@FindBy(xpath="//div[@id='WIN_3_1000000015']//a[@class='btn btn3d menu']")
 	WebElement managerGroupBtn;
@@ -36,7 +31,13 @@ public class NewChangePage extends BmcRemedyBase {
 	@FindBy(xpath="//td[contains(text(),'Radio Rollout')]")
 	WebElement radioRolloutBtn;
 	
-
+	
+	// Constructor
+	public NewChangePage() {
+		PageFactory.initElements(driver, this);
+		newChangeNumber = null;
+	}
+	
 	
 	private static WebElement makeChangeManagerXpath(String managerName) {
 		String s1 = "//div[@class='MenuOuter']//*[text()='";
@@ -112,15 +113,8 @@ public class NewChangePage extends BmcRemedyBase {
 	 * @version 0.1
 	 * @return void
 	 */
-	public void selectChangeManagerGroup() throws NoSuchElementException{
-		wait = new WebDriverWait(driver, UserUtility.EXPLICIT_WAIT);
-		
-		WebElement foundItem = wait.until(ExpectedConditions.visibilityOf(managerGroupBtn));
-		try {
-			foundItem.click();
-		}catch (NoSuchElementException exception) {
-			throw new NoSuchElementException();
-		}
+	public void selectChangeManagerGroup() {
+		clickOn(managerGroupBtn);
 	}
 	
 	/**
