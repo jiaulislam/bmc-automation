@@ -61,7 +61,6 @@ public class NewChangePage extends BmcRemedyBase {
 	// Constructor
 	public NewChangePage() {
 		PageFactory.initElements(driver, this);
-		newChangeNumber = null;
 	}
 	
 	
@@ -120,7 +119,7 @@ public class NewChangePage extends BmcRemedyBase {
 	 * @return void
 	 */
 	public void insertSummaryText(String summaryText) {
-		summaryTextBox.sendKeys(summaryText);
+		writeOn(summaryTextBox, summaryText);
 	}
 	
 	/**
@@ -131,7 +130,7 @@ public class NewChangePage extends BmcRemedyBase {
 	 * @return void
 	 */
 	public void insertNotesText(String details) {
-		notesTextBox.sendKeys(details);;
+		writeOn(notesTextBox, details);
 	}
 	
 	/**
@@ -142,7 +141,7 @@ public class NewChangePage extends BmcRemedyBase {
 	 * @return void
 	 */
 	public void insertImpactListText(String impactList) {
-		notesTextBox.sendKeys(impactList);
+		writeOn(notesTextBox, impactList);
 	}
 	
 	/**
@@ -153,7 +152,7 @@ public class NewChangePage extends BmcRemedyBase {
 	 * @return void
 	 */
 	public void insertWorkInfoText(String details) {
-		workInfoTextBox.sendKeys(details);;
+		writeOn(workInfoTextBox, details);
 	}
 	
 	/**
