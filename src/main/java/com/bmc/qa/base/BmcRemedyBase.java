@@ -6,10 +6,11 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -77,15 +78,45 @@ public class BmcRemedyBase {
 	 */
 	public static void clickOn(WebElement element) {
 		wait = new WebDriverWait(driver, UserUtility.EXPLICIT_WAIT);
+			
+		try {
+			WebElement foundElement = wait.until(ExpectedConditions.visibilityOf(element));
+			foundElement.click();
+		}catch (TimeoutException exception) {
+			exception.printStackTrace();
+		}
+	}
+	
+	
+	/**
+	 * Hover over an element.
+	 * 
+	 * @author Jibon
+	 * @version 0.1
+	 * @param element
+	 */
+	public static void hoverOver(WebElement element) {
+		wait = new WebDriverWait(driver, UserUtility.EXPLICIT_WAIT);
 		
 		WebElement foundElement = wait.until(ExpectedConditions.visibilityOf(element));
+		Actions action = new Actions(driver);
+		action.moveToElement(foundElement).build().perform();
+	}
+	
+	/**
+	 * Write on the element with explicit wait.
+	 * @param element
+	 * @param text
+	 */
+	public static void writeOn(WebElement element, String text) {
+		wait = new WebDriverWait(driver, UserUtility.EXPLICIT_WAIT);
 		
+		WebElement foundElement = wait.until(ExpectedConditions.visibilityOf(element));
 		try {
-			foundElement.click();
-		}catch (NoSuchElementException exception) {
-			;
+			foundElement.sendKeys(text);
+		}catch (Exception exception) {
+			exception.printStackTrace();
 		}
-		
 	}
 	
 }

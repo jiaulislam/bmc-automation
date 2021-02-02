@@ -16,7 +16,7 @@ public class UserUtility {
             "Sudipta Das"
 	};
 	
-	public static String[] ANR_GROUP= {
+	public static String[] ANR_GROUP = {
             "Faisal Mahmud Fuad",
             "Sumon Kumar Biswas",
             "Shahriar Mahbub",
