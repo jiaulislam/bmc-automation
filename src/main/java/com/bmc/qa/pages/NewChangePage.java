@@ -84,6 +84,12 @@ public class NewChangePage extends BmcRemedyBase {
 	@FindBy(xpath="//div[@class='f7'][contains(text(), 'Next Stage')]")
 	WebElement nextStageBtn;
 	
+	@FindBy(xpath="//a[contains(text(),'Tasks')]")
+	WebElement taskPagebtn;
+	
+	@FindBy(xpath="//a[contains(text(),'Date')]")
+	WebElement datePageBtn;
+	
 	// Constructor
 	public NewChangePage() {
 		PageFactory.initElements(driver, this);
@@ -308,11 +314,20 @@ public class NewChangePage extends BmcRemedyBase {
 	}
 	
 	/**
-	 * Created the Task templates.
+	 * Creates the Task templates.
 	 * @return TaskManager
 	 */
-	public TaskManager createTask() {
-		
-		return new TaskManager();
+	public TaskManagerPage createTask() {
+		clickOn(taskPagebtn);
+		return new TaskManagerPage();
+	}
+	
+	/**
+	 * Creates the Date page
+	 * @return TaskManager
+	 */
+	public DateSchedulePage createDate() {
+		clickOn(datePageBtn);
+		return new DateSchedulePage();
 	}
 }

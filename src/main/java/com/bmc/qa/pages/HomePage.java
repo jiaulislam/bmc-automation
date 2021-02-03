@@ -90,6 +90,7 @@ public class HomePage extends BmcRemedyBase{
 			if (alertText.contains(ALREADY_LOGGED_IN_MSG)) {
 				System.out.println("Already connected from other machine! "
 						+ "Do you wish to overwrite (Y/N) ?");
+				@SuppressWarnings("resource")
 				Scanner userInput = new Scanner(System.in);
 				
 					// just take the first character 
