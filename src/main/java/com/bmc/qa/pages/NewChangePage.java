@@ -1,6 +1,8 @@
 package com.bmc.qa.pages;
 
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -57,6 +59,30 @@ public class NewChangePage extends BmcRemedyBase {
 	WebElement changeManagerMenuBtn;
 	
 	
+	@FindBy(xpath="//img[@id='reg_img_303935000']")
+	WebElement locatorMenuBtn;
+	
+	@FindBy(xpath="//*[@id='WIN_0_303915400']/div/div")
+	WebElement clearBtn;
+	
+	@FindBy(xpath="//img[@id='reg_img_304249820']")
+	WebElement searchIconImg;
+	
+	
+	@FindBy(xpath="//textarea[@id='arid_WIN_0_260000001']")
+	WebElement siteGroup;
+	
+	@FindBy(xpath="//div[contains(text(),'Select')]")
+	WebElement selectLocationBtn;
+	
+	@FindBy(xpath="//div[contains(text(),'OK')]")
+	WebElement locationOkBtn;
+	
+	@FindBy(xpath="//a[@id='WIN_3_1001']")
+	WebElement saveBtn;
+	
+	@FindBy(xpath="//div[@class='f7'][contains(text(), 'Next Stage')]")
+	WebElement nextStageBtn;
 	
 	// Constructor
 	public NewChangePage() {
@@ -160,7 +186,7 @@ public class NewChangePage extends BmcRemedyBase {
 	 * 
 	 * @author Jibon
 	 * @version 0.1
-	 * @returns void
+	 * @return void
 	 */
 	public void clickWorkInfoAddBtn() {
 		clickOn(workInfoAddBtn);
@@ -223,6 +249,70 @@ public class NewChangePage extends BmcRemedyBase {
 	 * @return void
 	 */
 	public void ChangeLocation(String zonalGroupVendor) {
-		;
+		String parentWin = driver.getWindowHandle();
+		clickOn(locatorMenuBtn);
+		
+		Set<String> allWin = driver.getWindowHandles();
+		
+		Iterator<String> iterate = allWin.iterator();
+		
+		while (iterate.hasNext()) {
+			String childWin = iterate.next();
+			
+			if (!parentWin.equals(childWin)) {
+				driver.switchTo().window(childWin);
+				clickOn(clearBtn);
+				clickOn(searchIconImg);
+				
+				Set<String> newWins = driver.getWindowHandles();
+				Iterator<String> newIterate = newWins.iterator();
+				
+				while (newIterate.hasNext()) {
+					String grandChildWin = iterate.next();
+					
+					if (!childWin.equals(grandChildWin) && !(childWin.equals(parentWin))) {
+						driver.switchTo().window(grandChildWin);
+						writeOn(siteGroup, zonalGroupVendor);
+						clickOn(selectLocationBtn);
+						break;
+					}
+				}
+			}
+			driver.switchTo().window(childWin);
+			clickOn(locationOkBtn);
+			break;
+		}
+		driver.switchTo().window(parentWin);
+	}
+	
+	/**
+	 * Save the new Change information to draft mode
+	 * 
+	 * @author Jibon
+	 * @return void
+	 */
+	public void saveChange() {
+		clickOn(saveBtn);
+		// TODO: Need to verify if the save is successful.
+	}
+	
+	/**
+	 * Send the current change to next stage.
+	 * 
+	 *  @author Jibon
+	 *  @return void
+	 */
+	public void nextStage() {
+		clickOn(nextStageBtn);
+		// TODO: Need to verify if the next stage is successful.
+	}
+	
+	/**
+	 * Created the Task templates.
+	 * @return TaskManager
+	 */
+	public TaskManager createTask() {
+		
+		return new TaskManager();
 	}
 }

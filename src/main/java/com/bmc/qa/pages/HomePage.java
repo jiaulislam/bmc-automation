@@ -148,8 +148,9 @@ public class HomePage extends BmcRemedyBase{
 	 * @version 0.1
 	 * @return void
 	 */
-	public void cilckNewChange() {
+	public NewChangePage createNewChange() {
 		newChangeBtn.click();
+		return new NewChangePage();
 	}
 	
 	
