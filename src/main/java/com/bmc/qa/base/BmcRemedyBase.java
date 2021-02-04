@@ -134,4 +134,21 @@ public class BmcRemedyBase {
 			exception.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Handle where a frame is expected in BMC Remedy.
+	 * 
+	 * @param frameLocator
+	 * @param frameOkBtn
+	 * @return void
+	 */
+	public static void handleFrameOfConfirmation(WebElement frameLocator, WebElement frameOkBtn) {
+		try {
+			driver.switchTo().frame(frameLocator);
+			clickOn(frameOkBtn);
+			driver.switchTo().defaultContent();
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
+	}
 }

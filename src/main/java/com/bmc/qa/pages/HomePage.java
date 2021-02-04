@@ -138,6 +138,7 @@ public class HomePage extends BmcRemedyBase{
 	 * @return void
 	 */
 	public void clickChangeManagementBtn() {
+		hoverOver(changeManagementBtn);
 		changeManagementBtn.click();
 	}
 	
@@ -150,6 +151,7 @@ public class HomePage extends BmcRemedyBase{
 	 * @return void
 	 */
 	public NewChangePage createNewChange() {
+		hoverOver(newChangeBtn);
 		newChangeBtn.click();
 		return new NewChangePage();
 	}

@@ -5,10 +5,14 @@ import java.util.Iterator;
 import java.util.Set;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.NoSuchFrameException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.bmc.qa.base.BmcRemedyBase;
 import com.bmc.qa.utils.UserUtility;
@@ -90,6 +94,15 @@ public class NewChangePage extends BmcRemedyBase {
 	@FindBy(xpath="//a[contains(text(),'Date')]")
 	WebElement datePageBtn;
 	
+	@FindBy(xpath="//a[@class='btn'][contains(text(),'IT Home')]")
+	WebElement itHomeTextLink;
+	
+	@FindBy(xpath="//iframe[@src='http://itsm-web.robi.com.bd:8080/arsys/resources/html/MessagePopup.html']")
+	WebElement frameBoxLocator;
+	
+	@FindBy(xpath="//div[@id='PopupMsgFooter']//a[contains(text(),'OK')]")
+	WebElement frameOKBtn;
+	
 	// Constructor
 	public NewChangePage() {
 		PageFactory.initElements(driver, this);
@@ -151,6 +164,7 @@ public class NewChangePage extends BmcRemedyBase {
 	 * @return void
 	 */
 	public void insertSummaryText(String summaryText) {
+		summaryTextBox.clear();
 		writeOn(summaryTextBox, summaryText);
 	}
 	
@@ -329,6 +343,28 @@ public class NewChangePage extends BmcRemedyBase {
 	public DateSchedulePage createDate() {
 		clickOn(datePageBtn);
 		return new DateSchedulePage();
+	}
+	
+	/**
+	 * Navigate to the home page.
+	 * 
+	 * @author Jibon
+	 * @version 0.1
+	 * @return void
+	 */
+	public void navigateToHomePage() {
+		try {
+			clickOn(itHomeTextLink);
+		} catch (ElementClickInterceptedException exception) {
+			try {
+				handleFrameOfConfirmation(frameBoxLocator, frameOKBtn);
+			}catch (NoSuchFrameException frameException) {
+				wait = new WebDriverWait(driver, UserUtility.EXPLICIT_WAIT*2);
+				WebElement gotoHomeIcon = wait.until(ExpectedConditions.elementToBeClickable(itHomeTextLink));
+				clickOn(gotoHomeIcon);
+			}
+			
+		}
 	}
 	
 }
