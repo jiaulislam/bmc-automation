@@ -276,7 +276,7 @@ public class NewChangePage extends BmcRemedyBase {
 				while (newIterate.hasNext()) {
 					String grandChildWin = iterate.next();
 					
-					if (!childWin.equals(grandChildWin) && !(childWin.equals(parentWin))) {
+					if (!grandChildWin.equals(childWin) && !(grandChildWin.equals(parentWin))) {
 						driver.switchTo().window(grandChildWin);
 						writeOn(siteGroup, zonalGroupVendor);
 						clickOn(selectLocationBtn);
@@ -330,4 +330,5 @@ public class NewChangePage extends BmcRemedyBase {
 		clickOn(datePageBtn);
 		return new DateSchedulePage();
 	}
+	
 }

@@ -100,7 +100,7 @@ public class BmcRemedyBase {
 		
 		WebElement foundElement = wait.until(ExpectedConditions.visibilityOf(element));
 		Actions action = new Actions(driver);
-		action.moveToElement(foundElement).build().perform();
+		action.moveToElement(foundElement).perform();
 	}
 	
 	/**
@@ -119,4 +119,19 @@ public class BmcRemedyBase {
 		}
 	}
 	
+	/**
+	 * Double click on an WebElement
+	 * @param elementToDoubleClick
+	 */
+	public static void doubleClick(WebElement elementToDoubleClick) {
+		wait = new WebDriverWait(driver, UserUtility.EXPLICIT_WAIT);
+		
+		try {
+			WebElement foundElement = wait.until(ExpectedConditions.visibilityOf(elementToDoubleClick));
+			Actions action = new Actions(driver);
+			action.doubleClick(foundElement).perform();
+		}catch(Exception exception) {
+			exception.printStackTrace();
+		}
+	}
 }
