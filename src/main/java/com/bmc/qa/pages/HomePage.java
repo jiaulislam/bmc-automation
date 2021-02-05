@@ -164,7 +164,8 @@ public class HomePage extends BmcRemedyBase{
 	 * @version 0.1
 	 * @return void
 	 */
-	public void clickLogoutBtn() {
+	public LogoutPage clickLogoutBtn() {
 		logoutBtn.click();
+		return new LogoutPage();
 	}
 }

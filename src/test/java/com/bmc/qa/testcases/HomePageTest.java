@@ -42,8 +42,32 @@ public class HomePageTest extends BmcRemedyBase{
 	
 	@Test(priority=3)
 	public void alreadyLoggedInTest() {
-		;
+		boolean flag = homePage.alreadyLoggedIn();
+		homePage.clickLogoutBtn();
+		Assert.assertFalse(flag);
 	}
+	
+	@Test(priority=4)
+	public void clickApplicationBtnTest() {
+		homePage.clickApplicationBtn();
+		homePage.clickLogoutBtn();
+	}
+	
+	@Test(priority=5)
+	public void clickChangeManagementBtnTest() {
+		homePage.clickApplicationBtn();
+		homePage.clickChangeManagementBtn();
+		homePage.clickLogoutBtn();
+	}
+	
+	@Test(priority=6)
+	public void createNewChangeTest() {
+		homePage.clickApplicationBtn();
+		homePage.clickChangeManagementBtn();
+		homePage.createNewChange();
+		homePage.clickLogoutBtn();
+	}
+	
 	
 	@AfterMethod
 	public void tearDown() {

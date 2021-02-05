@@ -19,7 +19,7 @@ public class LoginPageTest extends BmcRemedyBase {
 	
 	public LoginPageTest() {
 		super();
-	}
+	} 
 	
 	
 	@BeforeMethod

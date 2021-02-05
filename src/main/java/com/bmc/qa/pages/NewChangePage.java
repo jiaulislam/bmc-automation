@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.NoSuchFrameException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -103,6 +104,10 @@ public class NewChangePage extends BmcRemedyBase {
 	@FindBy(xpath="//div[@id='PopupMsgFooter']//a[contains(text(),'OK')]")
 	WebElement frameOKBtn;
 	
+	@FindBy(xpath="//div[@id='PopupMsgFooter']//a[contains(text(), 'Yes')]")
+	WebElement confirmationYesBtn;
+	
+	
 	// Constructor
 	public NewChangePage() {
 		PageFactory.initElements(driver, this);
@@ -126,7 +131,6 @@ public class NewChangePage extends BmcRemedyBase {
 			return driver.findElement(By.xpath("//div[@class='MenuOuter']//*[text()='Muhammad Shahed']"));
 		}
 	}
-	
 	
 	/**
 	 * Check if the user shared Change Manager is ANR or TNR Group.
@@ -164,7 +168,6 @@ public class NewChangePage extends BmcRemedyBase {
 	 * @return void
 	 */
 	public void insertSummaryText(String summaryText) {
-		summaryTextBox.clear();
 		writeOn(summaryTextBox, summaryText);
 	}
 	
@@ -364,6 +367,21 @@ public class NewChangePage extends BmcRemedyBase {
 				clickOn(gotoHomeIcon);
 			}
 			
+		}
+	}
+	
+	public void handleNotSavedLogout() {
+		wait = new WebDriverWait(driver, UserUtility.EXPLICIT_WAIT);
+		try {
+			WebElement iFrame = wait.until(ExpectedConditions.visibilityOfElementLocated(
+					By.xpath("//iframe[@src='http://itsm-web.robi.com.bd:8080/arsys/resources/html/MessagePopup.html']")));
+			driver.switchTo().frame(iFrame);
+			driver.findElement(By.xpath("//div[@id='PopupMsgFooter']//a[contains(text(), 'Yes')]")).click();
+			driver.switchTo().defaultContent();
+		} catch (TimeoutException exception) {
+			driver.switchTo().defaultContent();
+		} catch (ElementClickInterceptedException excep) {
+			throw new ElementClickInterceptedException(excep.getMessage());
 		}
 	}
 	
