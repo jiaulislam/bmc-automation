@@ -10,6 +10,12 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.bmc.qa.base.BmcRemedyBase;
 
+/**
+ * <h4><b>HomePage</b> inheriting BmcRemedyBase class.</h4>
+ * All the Home Page related function should be written here.
+ * @author Jibon
+ *
+ */
 public class HomePage extends BmcRemedyBase{
 	
 	final String ALREADY_LOGGED_IN_MSG = "User is currently connected "
@@ -47,7 +53,7 @@ public class HomePage extends BmcRemedyBase{
 	/**
 	 * Get the current logged in user name.
 	 * <br><br>
-	 * <b>Usage:<b> {@code HomePage.validateCurrnetUser}
+	 * <b>Usage:<b> {@code HomePage.validateCurrnetUser()}
 	 * <br>
 	 * <br>
 	 * @author Jibon

@@ -7,6 +7,14 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.bmc.qa.base.BmcRemedyBase;
 
+
+/**
+ * LoginPage class is inheriting from BmcRemedyBase Class.<br>
+ * LoginPage class should only have the login pagelocators &<br>
+ * LoginPage related methods.
+ * @author Jibon
+ *
+ */
 public class LoginPage extends BmcRemedyBase {
 	
 	final String INVLAID_USER_CRED = "ARERR [9388] Authentication failed";
@@ -45,7 +53,7 @@ public class LoginPage extends BmcRemedyBase {
 	 * @version 0.1
 	 * @return boolean
 	 */
-	public boolean isValidUserCredentials() throws NoAlertPresentException{
+	public boolean isValidUserCredentials() {
 		try {
 			String alertText = driver.switchTo().alert().getText();
 			if (alertText.equals(INVLAID_USER_CRED)) {
@@ -67,20 +75,17 @@ public class LoginPage extends BmcRemedyBase {
 	 * The login() function implements
 	 * and login to Web-Site given browser and 
 	 * return a HomePage object as this functions landing
-	 * page is HomePage.<br><br>
-	 * Usage: {@code LoginPage.login();}
-	 * <br><br>
+	 * page is HomePage.<br>
 	 * @author Jibon
 	 * @version 0.1
 	 * @param username An User-Name is required to login to Web-Site
 	 * @param password A password is required to login to Web-Site relative to UserName 
-	 * @returns HomePage
+	 * @return HomePage
 	 */
 	public HomePage login(final String username, final String password) {
-		this.username.sendKeys(username);
-		this.password.sendKeys(password);
-		this.loginBtn.click();
-		
+		writeOn(this.username, username);
+		writeOn(this.password, password);
+		clickOn(this.loginBtn);
 		return new HomePage();
 	}
 

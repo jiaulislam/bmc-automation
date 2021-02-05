@@ -16,12 +16,27 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.bmc.qa.utils.UserUtility;
 
-
+/**
+ *<h4><em> Base Class BMC Remedy Web App.</em></h4>
+ * All the common functions(e.g: click, hover, write)<br>
+ * will be inherited by this class. Also 
+ * the main Driver is being initiated here.<br>
+ * Browser capabilites should be design here.
+ * 
+ * @version 0.1
+ * @author Jibon
+ */
 public class BmcRemedyBase {
 	public static WebDriver driver;
 	public static Properties staticData;
 	public static WebDriverWait wait;
 	
+	/**
+	 * Constructor will initiate the Properties file<br>
+	 * In the properties file two variable is declared.<br>
+	 * <br>
+	 * <b>Properties Variable: </b><em>browser and URL</em>
+	 */
 	public BmcRemedyBase() {
 		
 		try {

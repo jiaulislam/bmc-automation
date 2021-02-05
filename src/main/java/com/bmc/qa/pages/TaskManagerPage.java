@@ -17,8 +17,13 @@ public class TaskManagerPage extends BmcRemedyBase {
 	@FindBy(xpath="//td[contains(text(), 'Task Group Template')]")
 	WebElement taskGroupBtn;
 	
+	// Template Relate Button
 	@FindBy(xpath="//div[contains(text(),'Relate')]")
 	WebElement relateBtn;
+	
+	// Task Relate Button
+	@FindBy(xpath="//*[@id='WIN_0_10006772']")
+	WebElement taskRelateBtn;
 	
 	@FindBy(xpath="//span[contains(text(), 'Task Group')]")
 	WebElement createdTaskGroupBtn;
@@ -52,6 +57,45 @@ public class TaskManagerPage extends BmcRemedyBase {
 
 	public TaskManagerPage() {
 		PageFactory.initElements(driver, this);
+	}
+	
+	
+	/**
+	 * Create the Standard template for all new Change
+	 * 
+	 * @return void
+	 */
+	public void createTaskTemplate() {
+		clickOn(selectTaskCatagoryBtn);
+		hoverOver(taskGroupBtn);
+		clickOn(taskGroupBtn);
+		clickOn(relateBtn);
+		
+		String parentWindow = driver.getWindowHandle();
+		
+		Set<String> allWindows = driver.getWindowHandles();
+		
+		Iterator<String> iterateWindow = allWindows.iterator();
+		
+		if (iterateWindow.hasNext()) {
+			String childWindow = iterateWindow.next();
+			
+			if(!parentWindow.equals(childWindow)) {
+				driver.switchTo().window(childWindow);
+				clickOn(taskRelateBtn);
+			}
+		}
+		driver.switchTo().window(parentWindow);
+	}
+	
+	
+	/**
+	 * Click on the created task template
+	 * 
+	 * @return void
+	 */
+	public void clickTaskRowSpan() {
+		clickOn(createdTaskGroupBtn);
 	}
 	
 	

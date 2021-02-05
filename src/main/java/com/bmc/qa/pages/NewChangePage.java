@@ -18,6 +18,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.bmc.qa.base.BmcRemedyBase;
 import com.bmc.qa.utils.UserUtility;
 
+
+/**
+ * <h4><code>NewChangePage</code> class inheriting <code>BmcRemedybase</code> class.</h4>
+ * 
+ * @author Jibon
+ *
+ */
 public class NewChangePage extends BmcRemedyBase {
 	
 	private String newChangeNumber;
@@ -328,8 +335,8 @@ public class NewChangePage extends BmcRemedyBase {
 	}
 	
 	/**
-	 * Creates the Task templates.
-	 * @return TaskManager
+	 * Click the Task Page and return TaskManagerPage object
+	 * @return TaskManagerPage
 	 */
 	public TaskManagerPage createTask() {
 		clickOn(taskPagebtn);
@@ -367,7 +374,7 @@ public class NewChangePage extends BmcRemedyBase {
 		}
 	}
 	/**
-	 * Handle where user tries to logout after some data fill
+	 * Handle where user tries to logout after some data filled up already.
 	 * 
 	 * @author Jibon
 	 * @version 0.1
