@@ -19,10 +19,20 @@ public class DateSchedulePage extends BmcRemedyBase{
 		PageFactory.initElements(driver, this);
 	}
 	
+	/**
+	 * Fill up the Start Date in Date Page
+	 * 
+	 * @param startDate
+	 */
 	public void insertStartDate(String startDate) {
 		writeOn(startDateInput, startDate);
 	}
 	
+	/**
+	 * Fill up the End date in the Date Page
+	 * 
+	 * @param endDate
+	 */
 	public void insertEndDate(String endDate) {
 		writeOn(endDateInput, endDate);
 	}

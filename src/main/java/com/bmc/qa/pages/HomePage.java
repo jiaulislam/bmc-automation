@@ -81,7 +81,7 @@ public class HomePage extends BmcRemedyBase{
 	 * <br>
 	 * @author Jibon
 	 * @version 0.1
-	 * @return false if user is not connected & choose to overwrite else false
+	 * @return false if user is not connected & choose to overwrite else true
 	 */
 	public boolean handleAlreadyLoggedInUser() {
 		try {
@@ -127,7 +127,7 @@ public class HomePage extends BmcRemedyBase{
 	 * @return void
 	 */
 	public void clickApplicationBtn() {
-		applicationBtn.click();
+		clickOn(applicationBtn);
 	}
 	
 	/**
@@ -139,7 +139,7 @@ public class HomePage extends BmcRemedyBase{
 	 */
 	public void clickChangeManagementBtn() {
 		hoverOver(changeManagementBtn);
-		changeManagementBtn.click();
+		clickOn(changeManagementBtn);
 	}
 	
 	
@@ -152,7 +152,7 @@ public class HomePage extends BmcRemedyBase{
 	 */
 	public NewChangePage createNewChange() {
 		hoverOver(newChangeBtn);
-		newChangeBtn.click();
+		clickOn(newChangeBtn);
 		return new NewChangePage();
 	}
 	
@@ -165,7 +165,7 @@ public class HomePage extends BmcRemedyBase{
 	 * @return LogoutPage
 	 */
 	public LogoutPage clickLogoutBtn() {
-		logoutBtn.click();
+		clickOn(logoutBtn);
 		return new LogoutPage();
 	}
 }

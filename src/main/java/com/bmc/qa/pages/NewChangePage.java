@@ -366,7 +366,13 @@ public class NewChangePage extends BmcRemedyBase {
 			
 		}
 	}
-	
+	/**
+	 * Handle where user tries to logout after some data fill
+	 * 
+	 * @author Jibon
+	 * @version 0.1
+	 * @return void
+	 */
 	public void handleNotSavedLogout() {
 		wait = new WebDriverWait(driver, UserUtility.EXPLICIT_WAIT);
 		try {
