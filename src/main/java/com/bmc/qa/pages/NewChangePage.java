@@ -46,7 +46,6 @@ public class NewChangePage extends BmcRemedyBase {
 	@FindBy(xpath="//*[@id='arid_WIN_3_1000000000']")
 	WebElement summaryTextBox;
 	
-	
 	// Notes Text Box
 	@FindBy(xpath="//*[@id='arid_WIN_3_1000000151']")
 	WebElement notesTextBox;
@@ -63,7 +62,6 @@ public class NewChangePage extends BmcRemedyBase {
 	@FindBy(xpath="//*[@id='WIN_3_1000000403']/a")
 	WebElement changeManagerMenuBtn;
 	
-	
 	@FindBy(xpath="//img[@id='reg_img_303935000']")
 	WebElement locatorMenuBtn;
 	
@@ -72,7 +70,6 @@ public class NewChangePage extends BmcRemedyBase {
 	
 	@FindBy(xpath="//img[@id='reg_img_304249820']")
 	WebElement searchIconImg;
-	
 	
 	@FindBy(xpath="//textarea[@id='arid_WIN_0_260000001']")
 	WebElement siteGroup;

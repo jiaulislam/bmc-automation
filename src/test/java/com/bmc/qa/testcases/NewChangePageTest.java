@@ -63,6 +63,23 @@ public class NewChangePageTest extends BmcRemedyBase {
 		Assert.assertTrue(logoutPage.logoutSuccessfullVerification());
 	}
 	
+	@Test(priority=5)
+	public void selectChangeManagerGroupTest() {
+		newChange.selectChangeManagerGroup("Md. Musfiqur  Rahman");
+		logoutPage = homePage.clickLogoutBtn();
+		newChange.handleNotSavedLogout();
+		Assert.assertTrue(logoutPage.logoutSuccessfullVerification());
+	}
+	
+	@Test(priority=6)
+	public void selectChangeManagerTest() {
+		newChange.selectChangeManagerGroup("Md. Musfiqur  Rahman");
+		newChange.selectChangeManager("Md. Musfiqur  Rahman");
+		logoutPage = homePage.clickLogoutBtn();
+		newChange.handleNotSavedLogout();
+		Assert.assertTrue(logoutPage.logoutSuccessfullVerification());
+	}
+	
 	@AfterMethod
 	public void tearDown() {
 		driver.quit();

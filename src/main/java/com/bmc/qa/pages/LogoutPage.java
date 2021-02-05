@@ -13,7 +13,7 @@ import com.bmc.qa.utils.UserUtility;
 
 public class LogoutPage extends BmcRemedyBase {
 	
-	String logoutSuccessMsg = "You have successfully logged out";
+	String logoutSuccessMsg;
 	
 	@FindBy(xpath="//td[@class='Logout'][contains(text(),'You have successfully logged out')]")
 	WebElement logoutSuccessText;
@@ -22,6 +22,7 @@ public class LogoutPage extends BmcRemedyBase {
 	// initialize the PageFactory
 	public LogoutPage() {
 		PageFactory.initElements(driver, this);
+		logoutSuccessMsg = "You have successfully logged out";
 	}
 	
 	public boolean logoutSuccessfullVerification() {

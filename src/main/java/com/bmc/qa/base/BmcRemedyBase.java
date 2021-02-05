@@ -145,7 +145,6 @@ public class BmcRemedyBase {
 	public static void handleFrameOfConfirmation(WebElement frameLocator, WebElement frameOkBtn) {
 		try {
 			driver.switchTo().frame(frameLocator);
-			driver.getTitle();
 			clickOn(frameOkBtn);
 		} catch (Exception exception) {
 			exception.printStackTrace();

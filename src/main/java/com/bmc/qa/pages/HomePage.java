@@ -162,7 +162,7 @@ public class HomePage extends BmcRemedyBase{
 	 * 
 	 * @author Jibon
 	 * @version 0.1
-	 * @return void
+	 * @return LogoutPage
 	 */
 	public LogoutPage clickLogoutBtn() {
 		logoutBtn.click();
