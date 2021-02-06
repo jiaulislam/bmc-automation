@@ -1,8 +1,5 @@
 package com.bmc.qa.pages;
 
-import java.util.Iterator;
-import java.util.Set;
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -22,7 +19,7 @@ public class TaskManagerPage extends BmcRemedyBase {
 	WebElement relateBtn;
 	
 	// Task Relate Button
-	@FindBy(xpath="//*[@id='WIN_0_10006772']")
+	@FindBy(xpath="//a[@id='WIN_0_10006772']")
 	WebElement taskRelateBtn;
 	
 	@FindBy(xpath="//span[contains(text(), 'Task Group')]")
@@ -66,23 +63,17 @@ public class TaskManagerPage extends BmcRemedyBase {
 	 * @return void
 	 */
 	public void createTaskTemplate() {
+		String parentWindow = driver.getWindowHandle();
+		
 		clickOn(selectTaskCatagoryBtn);
 		hoverOver(taskGroupBtn);
 		clickOn(taskGroupBtn);
 		clickOn(relateBtn);
-		
-		String parentWindow = driver.getWindowHandle();
-		
-		Set<String> allWindows = driver.getWindowHandles();
-		
-		Iterator<String> iterateWindow = allWindows.iterator();
-		
-		if (iterateWindow.hasNext()) {
-			String childWindow = iterateWindow.next();
-			
-			if(!parentWindow.equals(childWindow)) {
-				driver.switchTo().window(childWindow);
-				clickOn(taskRelateBtn);
+				
+		for (String winHanle : driver.getWindowHandles()) {
+			if (!parentWindow.equals(winHanle)) {
+				driver.switchTo().window(winHanle);
+				clickOn(taskRelateBtn);	
 			}
 		}
 		driver.switchTo().window(parentWindow);
@@ -107,12 +98,7 @@ public class TaskManagerPage extends BmcRemedyBase {
 	 * @return void
 	 */
 	private void setDateTimeOfTask(String parentWindow, String startTime, String endTime) {
-		Set<String> allWins = driver.getWindowHandles();
-		
-		Iterator<String> iterate = allWins.iterator();
-		if (iterate.hasNext()) {
-			String childWin = iterate.next();
-			
+		for (String childWin : driver.getWindowHandles()) {
 			if (!parentWindow.equals(childWin)) {
 				driver.switchTo().window(childWin);
 				clickOn(taskDateSectionBtn);

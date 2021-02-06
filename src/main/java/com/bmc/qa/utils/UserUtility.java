@@ -7,8 +7,8 @@ public class UserUtility {
 	public static String URL = "http://itsm-web.robi.com.bd:8080/arsys/shared/login.jsp?/arsys/home";
 	final public static String USER_NAME = System.getenv("BMC_USER");
 	final public static String USER_PASS = System.getenv("BMC_PASS");
-//	public static String USER_NAME =  // For static use purpose set this
-//	public static String USER_PASS = 
+//	public static String USER_NAME =  "sh3548"; // For static use purpose set this
+//	public static String USER_PASS =  "Robi@123";
 	
 	public static String[] TNR_GROUP = {
             "Muhammad Shahed",
