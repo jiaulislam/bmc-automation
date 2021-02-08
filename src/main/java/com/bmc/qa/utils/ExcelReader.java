@@ -4,9 +4,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.util.CellReference;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -14,75 +14,107 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class ExcelReader {
 
 	private String pathOfReaderFile;
-	private DataFormatter formatter;
 	private FileInputStream bufferStream;
 	private XSSFWorkbook workbook;
 	private XSSFSheet worksheet;
+	private DataFormatter formatter;
+	private CellReference cellReference;
 	
 	public ExcelReader() throws FileNotFoundException {
-		this.pathOfReaderFile = System.getProperty("user.dir").concat("/datasets/Request_CR.xlsx");
-		this.formatter = new DataFormatter();
+		pathOfReaderFile = System.getProperty("user.dir").concat("/datasets/Request_CR.xlsx");
 		try {
-			this.bufferStream = new FileInputStream(this.pathOfReaderFile);
+			bufferStream = new FileInputStream(pathOfReaderFile);
 		}catch (IOException error) {
 			throw new FileNotFoundException("File Not found !" + error.getMessage());
 		}
 		try {
-			this.workbook = new XSSFWorkbook(bufferStream);
+			workbook = new XSSFWorkbook(bufferStream);
+			worksheet = workbook.getSheet("Main");
+			formatter = new DataFormatter();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	private String excelParser(String letterIndex, int intIndex) {
-		CellReference dateCellRef = new CellReference(letterIndex.concat(String.valueOf(intIndex)));
-		Row r = this.worksheet.getRow(dateCellRef.getRow());
-		Cell c = r.getCell(dateCellRef.getCol());
-		return formatter.formatCellValue(c);
+	private Cell getMyCell(String reference, int cell) {
+		cellReference = new CellReference(reference.concat(String.valueOf(cell)));
+		Row row = worksheet.getRow(cellReference.getRow());
+		Cell cellIndex = row.getCell(cellReference.getCol());
+		return cellIndex;
 	}
 	
-	
-	public void changeSheet() {
-		this.worksheet = this.workbook.getSheet("Main");
+	public String parseSummary(int cell) {
+		return formatter.formatCellValue(getMyCell("D", cell));
 	}
 	
-	public String parseDate(int index) {
-		return excelParser("B", index);
+	public String parseActivityDetails(int cell) {
+		return formatter.formatCellValue(getMyCell("E", cell));
 	}
 	
-	public String parseCoordonator(int index) {
-		return excelParser("C", index);
+	public String parseServiceType(int cell) {
+		return formatter.formatCellValue(getMyCell("G", cell));
 	}
 	
-	public String parseShortDescription(int index) {
-		return excelParser("D", index);
+	public String parseDate(int cell) {
+		return formatter.formatCellValue(getMyCell("B", cell));
 	}
 	
-	public String parseChangeActivity(int index) {
-		return excelParser("E", index);
+	public String parseCoordinator(int cell) {
+		return formatter.formatCellValue(getMyCell("C", cell));
 	}
 	
-	public String parseImpactList(int index) {
-		return excelParser("F", index);
+	public String parseImpactList(int cell) {
+		return formatter.formatCellValue(getMyCell("F", cell));
 	}
 	
-	public String parseServiceType(int index) {
-		return excelParser("G", index);
+	public String parseDownTime(int cell) {
+		return formatter.formatCellValue(getMyCell("H", cell));
 	}
 	
-	public String parseDownTimeHour(int index) {
-		return excelParser("H", index);
+	public String parseCommercialZone(int cell) {
+		return formatter.formatCellValue(getMyCell("I", cell));
 	}
 	
-	public String parseCommercialZone(int index) {
-		return excelParser("I", index);
+	public String parseChangeManager(int cell) {
+		return formatter.formatCellValue(getMyCell("K", cell));
 	}
 	
-	public String parseChangeManager(int index) {
-		return excelParser("J", index);
+	/* Obsolete Code 
+	-----------------------------
+	public List<String>[] getUserData() {
+		int cnt = 0;
+		for (Row row : worksheet) {
+			if (row.getCell(1).toString().equals("")) {
+				break;
+			}else {
+				List<String> cols = new ArrayList<String>();
+				for (Cell col : row) {
+					if(formatter.formatCellValue(col) != "") {
+						cols.add(formatter.formatCellValue(col));
+					}else {
+						break;
+					}
+				}
+				listOfData[cnt++] = cols;
+			}
+		}
+		return listOfData;
 	}
-	
-	public void closeWorkBook() throws IOException {
+	-------------------------------
+	*/
+	public Object[][] getExcelData() {
+		Object[][] data = new Object[worksheet.getLastRowNum()][worksheet.getRow(0).getLastCellNum()]; 
+		
+		for (int i = 0; i < worksheet.getLastRowNum(); i++) {
+			for (int k = 0; k < worksheet.getRow(0).getLastCellNum(); k++) {
+				data[i][k] = worksheet.getRow(i+1).getCell(k).toString();
+			}
+		}
+		return data;
+	}
+
+
+	public void closeWorkbook() throws IOException {
 		workbook.close();
 	}
 }

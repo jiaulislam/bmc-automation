@@ -275,7 +275,7 @@ public class NewChangePage extends BmcRemedyBase {
 	 * @version 0.1
 	 * @return void
 	 */
-	public void ChangeLocation(String zonalGroupVendor) {
+	public void changeLocation(String zonalGroupVendor) {
 		String parentWin = driver.getWindowHandle();
 		clickOn(locatorMenuBtn);
 		
